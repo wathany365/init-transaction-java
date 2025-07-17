@@ -1,0 +1,21 @@
+resilience4j:
+  circuitbreaker:
+    instances:
+      exchangeRate:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 2
+        minimumNumberOfCalls: 5
+logging:
+  level:
+    io.github.resilience4j: DEBUG
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,circuitbreakers,prometheus
+  endpoint:
+    health:
+      show-details: always
